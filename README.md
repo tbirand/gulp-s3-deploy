@@ -1,14 +1,16 @@
-# gulp-s3 [![NPM version]][npm-url]
+# gulp-s3-deploy 
 
-> s3 plugin for [gulp](https://github.com/wearefractal/gulp)
+> An Amazon AWS S3 deployment plugin for [gulp](https://github.com/wearefractal/gulp)
 
-## Usage
+## Install
 
-Install `gulp-s3-deploy` as a development dependency:
+Add `gulp-s3-deploy` as a development dependency:
 
 ```shell
 npm install --save-dev gulp-s3-deploy
 ```
+
+## Usage
 
 Configure your credentials and bucket: 
 

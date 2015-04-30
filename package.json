@@ -1,6 +1,6 @@
 {
   "name": "gulp-s3-deploy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Gulp plugin that deploys your files to an Amazon AWS S3 bucket.",
   "keywords": [
     "gulpplugin",
