@@ -30,11 +30,13 @@ module.exports = function (aws, options) {
           }
       }
 
-      if (regexGzip.test(file.path)) {
-          // Set proper encoding for gzipped files, remove .gz suffix
-          headers['Content-Encoding'] = 'gzip';
+      // is this a gzipped 'gz' file? 
+      if ( regexGzip.test( file.path ) ) {
+          headers[ 'Content-Encoding' ] = 'gzip';
+          if ( options.gzStrip )
           uploadPath = uploadPath.substring(0, uploadPath.length - 3);
-      } else if (options.gzippedOnly) {
+      }
+       else if (options.gzOnly) {
           // Ignore non-gzipped files
           return file;
       }

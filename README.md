@@ -1,36 +1,35 @@
-# gulp-s3 [![NPM version][npm-image]][npm-url]
+# gulp-s3 [![NPM version]][npm-url]
 
 > s3 plugin for [gulp](https://github.com/wearefractal/gulp)
 
 ## Usage
 
-First, install `gulp-s3` as a development dependency:
+Install `gulp-s3-deploy` as a development dependency:
 
 ```shell
-npm install --save-dev gulp-s3
+npm install --save-dev gulp-s3-deploy
 ```
 
-Setup your aws.json file
+Configure your credentials and bucket: 
+
 ```javascript
-{
-  "key": "AKIAI3Z7CUAFHG53DMJA",
+var s3Credentials = {
+  "key":    "AKIAI3Z7CUAFHG53DMJA",
   "secret": "acYxWRu5RRa6CwzQuhdXEfTpbQA+1XQJ7Z1bGTCx",
   "bucket": "dev.example.com",
   "region": "eu-west-1"
-}
+};
 ```
 
-Then, use it in your `gulpfile.js`:
-```javascript
-var s3 = require("gulp-s3");
+In your gulp task, deploy your files:
 
-aws = JSON.parse(fs.readFileSync('./aws.json'));
-gulp.src('./dist/**')
-    .pipe(s3(aws));
+```javascript
+var s3 = require( "gulp-s3" );
+gulp.src( './public/**' )
+    .pipe( s3( s3Credentials ) );
 ```
 
 ## API
-
 
 #### options.headers
 
@@ -45,29 +44,22 @@ gulp.src('./dist/**', {read: false})
     .pipe(s3(aws, options));
 ```
 
-#### options.gzippedOnly
+#### options.gzStrip
+
+Type: `Boolean`
+Default: `false`
+
+If set the gz extension of files will be removed.
+
+#### options.gzOnly
 
 Type: `Boolean`          
 Default: `false`
 
-Only upload files with .gz extension, additionally it will remove the .gz suffix on destination filename and set appropriate Content-Type and Content-Encoding headers.
-
-```javascript
-var gulp = require("gulp");
-var s3 = require("gulp-s3");
-var gzip = require("gulp-gzip");
-var options = { gzippedOnly: true };
-
-gulp.src('./dist/**')
-.pipe(gzip())
-.pipe(s3(aws, options));
-
-});
-```
+If set, only files with a gz extension will be uploaded.
 
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
+[npm-url]: https://npmjs.org/package/gulp-s3-deploy
 
-[npm-url]: https://npmjs.org/package/gulp-s3
-[npm-image]: https://badge.fury.io/js/gulp-s3.png
