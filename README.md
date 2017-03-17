@@ -60,6 +60,13 @@ Default: `false`
 
 If set, only files with a gz extension will be uploaded.
 
+#### options.uploadPath
+
+Type: `String`
+Default: ''
+
+If set, files will be uploaded to the given path on the S3 bucket.
+
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
